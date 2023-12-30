@@ -30,6 +30,6 @@ use_references_list: false
 package: resources
 
 groups:
-  - path: images/
+  - path: images
     class_name: AppImages
     types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp ]

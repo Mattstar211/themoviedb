@@ -3,12 +3,14 @@ import 'package:themoviedb/resources/resources.dart';
 
 
 class Movie {
+  final int id;
   final String imageName;
   final String title;
   final String time;
   final String description;
 
   Movie({
+    required this.id,
     required this.imageName,
     required this.title,
     required this.time,
@@ -27,42 +29,49 @@ class MovieListWidget extends StatefulWidget {
 class _MovieListWidgetState extends State<MovieListWidget> {
   final _movies = [
     Movie(
+        id: 1,
         imageName: AppImages.moviePlaceholder,
         title: 'Телохранитель на фрилансе',
         time: '5 октября 2023',
         description: 'Бывший оперативник спецназа променял полную экшна жизнь на серые будни в офисе.'
     ),
     Movie(
+        id: 2,
         imageName: AppImages.moviePlaceholder,
         title: 'Назад в будущее 1',
         time: '5 октября 2023',
         description: 'Бывший оперативник спецназа променял полную экшна жизнь на серые будни в офисе.'
     ),
     Movie(
+        id: 3,
         imageName: AppImages.moviePlaceholder,
         title: 'Оппенгеймер',
         time: '5 октября 2023',
         description: 'Бывший оперативник спецназа променял полную экшна жизнь на серые будни в офисе.'
     ),
     Movie(
+        id: 4,
         imageName: AppImages.moviePlaceholder,
         title: 'Железный человек 1',
         time: '5 октября 2023',
         description: 'Бывший оперативник спецназа променял полную экшна жизнь на серые будни в офисе.'
     ),
     Movie(
+        id: 5,
         imageName: AppImages.moviePlaceholder,
         title: 'Мстители',
         time: '5 октября 2023',
         description: 'Бывший оперативник спецназа променял полную экшна жизнь на серые будни в офисе.'
     ),
     Movie(
+        id: 6,
         imageName: AppImages.moviePlaceholder,
         title: 'Невероятный халк',
         time: '5 октября 2023',
         description: 'Бывший оперативник спецназа променял полную экшна жизнь на серые будни в офисе.'
     ),
     Movie(
+        id: 7,
         imageName: AppImages.moviePlaceholder,
         title: 'Железный человек 2',
         time: '5 октября 2023',
@@ -93,6 +102,14 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     _searchController.addListener(_searchMovies);
   }
 
+  
+  void _onMovieTap(int index){
+    final id = _movies[index].id;
+    Navigator.of(context).pushNamed(
+        '/main_screen/movie_details',
+        arguments: id
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -167,9 +184,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
-                      onTap: (){
-                        print('123');
-                      },
+                      onTap: () => _onMovieTap(index),
                     ),
                   )
                 ],
